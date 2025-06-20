@@ -3,10 +3,6 @@ import requests
 import certifi
 import html5lib
 
-
-
-
-
 # this array contains list of dining locations, and their associated menu website links to webscrape
 dining_location_menus = [{
     "index": 0,
@@ -28,9 +24,21 @@ raw_site_html = request.text
 # parsing the raw html into beautiful soup object format:
 soup = BeautifulSoup(raw_site_html, 'html5lib')
 
+# storing parsed tables that contain menu information:
 all_tables = soup.find_all('table')
 
-for table in all_tables:
+# storing all the titles for the tables:
+table_titles = [h2.get_text(strip=True) for h2 in soup.find_all('h2', class_="block__heading heading_primary")]
+
+# creating an empty array that will house all the menu data after the loop:
+menu_data = []
+
+for i in range(len(all_tables)):
+    table = all_tables[i] # Accessing the table using its index
     # getting all the horizontal headers names for the table:
     col_headers = [header.get_text(strip=True) for header in table.find_all('th', scope='col')]
-    print(col_headers, "fein fein fein fein fein fein")
+
+    table_data = {
+        "table_title": table_titles[i],
+    }
+
