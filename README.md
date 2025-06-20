@@ -52,3 +52,26 @@
   }
 ]
 ```
+
+## How to run:
+1. Clone the project
+```bash
+git clone https://github.com/blackmaskexe/dining-menu-web-scraping.git
+cd dining-menu-web-scraping
+```
+2. PIP Install all the requirements:
+```bash
+pip install -r requirements.txt
+```
+- note that you might need to replace pip with pip3 if the above does not work
+
+3. Create an API key for Gemini AI
+3. Create a .env file in your project folder
+4. create a secret named GEMINI_API_KEY in your .env file like this:
+```.env
+GEMINI_API_KEY=YOURAPIKEYWITHOUTQUOTES123456
+```
+5. Run main.py
+```python
+python main.py
+```
